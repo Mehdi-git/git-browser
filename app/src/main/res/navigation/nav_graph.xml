@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/paperFragment">
+
+    <fragment
+        android:id="@+id/paperFragment"
+        android:name="dev.mehdibakhtiari.gitbrowser.presentation.features.PagerFragment"
+        android:label="Profile"
+        >
+
+        <action
+            android:id="@+id/action_paperFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="dev.mehdibakhtiari.gitbrowser.presentation.features.favorites.FavoritesFragment"
+        android:label="Favorites"/>
+
+</navigation>
