@@ -1,4 +1,4 @@
-package dev.mehdibakhtiari.gitbrowser.features.favorites
+package dev.mehdibakhtiari.gitbrowser.presentation.features.favorites
 
 import androidx.lifecycle.ViewModel
 

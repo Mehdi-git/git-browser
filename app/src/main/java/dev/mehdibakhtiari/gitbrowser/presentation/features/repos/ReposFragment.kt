@@ -1,4 +1,4 @@
-package dev.mehdibakhtiari.gitbrowser.features.repos
+package dev.mehdibakhtiari.gitbrowser.presentation.features.repos
 
 import androidx.fragment.app.Fragment
 
