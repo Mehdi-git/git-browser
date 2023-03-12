@@ -9,4 +9,5 @@
     <string name="public_repos">Poblic Repositories</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
+    <string name="profile_picture">Profile Picture</string>
 </resources>
