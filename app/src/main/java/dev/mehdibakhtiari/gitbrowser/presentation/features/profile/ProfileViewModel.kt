@@ -9,20 +9,26 @@ import dev.mehdibakhtiari.gitbrowser.data.Repository
 import dev.mehdibakhtiari.gitbrowser.data.models.ProfileEntity
 import dev.mehdibakhtiari.gitbrowser.data.models.toProfileEntity
 import dev.mehdibakhtiari.gitbrowser.data.models.toReposEntity
+import dev.mehdibakhtiari.gitbrowser.utils.conectivity.ConnectionManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val repository: Repository,
+    private val connectionManager: ConnectionManager
+    ) : ViewModel() {
 
     private val _profileInfo = MutableLiveData<ProfileEntity>()
     val profileInfo : LiveData<ProfileEntity>
     get() = _profileInfo
 
     init {
-        fetchProfileInfo(USER_NAME)
-        getGitRepos(USER_NAME)
+        if (connectionManager.isNetworkConnected() == true) {
+            fetchProfileInfo(USER_NAME)
+            getGitRepos(USER_NAME)
+        }
         observeToProfileInfo()
     }
 
