@@ -1,3 +1,3 @@
 package dev.mehdibakhtiari.gitbrowser.data.models
 
-class ReposModel : ArrayList<ReposItem>()
+class ReposModel : ArrayList<ReposResponse>()

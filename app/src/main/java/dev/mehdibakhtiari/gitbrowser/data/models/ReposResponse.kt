@@ -2,7 +2,8 @@ package dev.mehdibakhtiari.gitbrowser.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ReposItem(
+data class ReposResponse(
+    @SerializedName("id") val id: Int,
     @SerializedName("clone_url") val clone_url: String,
     @SerializedName("created_at") val created_at: String,
     @SerializedName("description") val description: String?,
@@ -12,7 +13,6 @@ data class ReposItem(
     @SerializedName("full_name") val full_name: String,
     @SerializedName("git_url") val git_url: String,
     @SerializedName("has_issues") val has_issues: Boolean,
-    @SerializedName("id") val id: Int,
     @SerializedName("keys_url") val keys_url: String,
     @SerializedName("labels_url") val labels_url: String,
     @SerializedName("language") val language: String?,
@@ -28,4 +28,12 @@ data class ReposItem(
     @SerializedName("url") val url: String,
     @SerializedName("visibility") val visibility: String,
     @SerializedName("watchers_count") val watchers_count: Int,
+)
+
+fun ReposResponse.toReposEntity() = ReposEntity (
+    id = id,
+    name = name,
+    description = description,
+    language = language,
+
 )
