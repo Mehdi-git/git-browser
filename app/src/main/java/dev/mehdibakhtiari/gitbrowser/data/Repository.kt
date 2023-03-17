@@ -27,6 +27,7 @@ interface Repository {
 
     suspend fun getAllFavoriteRepos(): Flow<List<ReposEntity>>
 
+
     suspend fun saveProfileInfo(profileEntity: ProfileEntity)
 
     suspend fun getProfileInfo(login: String): Flow<ProfileEntity?>
