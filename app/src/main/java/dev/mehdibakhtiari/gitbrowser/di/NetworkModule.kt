@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import dev.mehdibakhtiari.gitbrowser.BuildConfig.GIT_API_BASE_URL
 import dev.mehdibakhtiari.gitbrowser.data.RepositoryImpl
 import dev.mehdibakhtiari.gitbrowser.data.Repository
+import dev.mehdibakhtiari.gitbrowser.data.database.ProfileDao
 import dev.mehdibakhtiari.gitbrowser.data.database.ReposDao
 import dev.mehdibakhtiari.gitbrowser.data.network.GitReposService
 import okhttp3.OkHttpClient
@@ -58,7 +59,8 @@ object NetworkModule {
     @Singleton
     fun provideRepository(
         gitReposService: GitReposService,
-        database: ReposDao
-    ) : Repository = RepositoryImpl(gitReposService, database)
+        reposDatabase: ReposDao,
+        profileDatabase: ProfileDao,
+    ) : Repository = RepositoryImpl(gitReposService, reposDatabase, profileDatabase)
 
 }

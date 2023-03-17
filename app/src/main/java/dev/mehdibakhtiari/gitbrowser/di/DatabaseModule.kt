@@ -8,6 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dev.mehdibakhtiari.gitbrowser.data.database.GitBrowserDatabase
+import dev.mehdibakhtiari.gitbrowser.data.database.ProfileDao
 import dev.mehdibakhtiari.gitbrowser.data.database.ReposDao
 import javax.inject.Singleton
 
@@ -29,5 +30,10 @@ object DatabaseModule {
     @Provides
     fun provideRepoDao(database: GitBrowserDatabase): ReposDao {
         return database.reposDao()
+    }
+
+    @Provides
+    fun provideProfileDao(database: GitBrowserDatabase): ProfileDao {
+        return database.profileDao()
     }
 }

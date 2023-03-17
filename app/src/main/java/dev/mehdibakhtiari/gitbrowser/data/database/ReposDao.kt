@@ -8,8 +8,6 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ReposDao {
 
-
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(repos: ReposEntity)
 
@@ -33,7 +31,5 @@ interface ReposDao {
 
     @Query("SELECT EXISTS(SELECT 1 FROM repos_table WHERE id = :repoId)")
     fun isRepoExist(repoId: Int): Boolean
-
-
 
 }

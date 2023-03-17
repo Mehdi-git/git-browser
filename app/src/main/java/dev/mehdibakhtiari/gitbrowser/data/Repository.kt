@@ -1,5 +1,6 @@
 package dev.mehdibakhtiari.gitbrowser.data
 
+import dev.mehdibakhtiari.gitbrowser.data.models.ProfileEntity
 import dev.mehdibakhtiari.gitbrowser.data.models.ProfileModel
 import dev.mehdibakhtiari.gitbrowser.data.models.ReposEntity
 import dev.mehdibakhtiari.gitbrowser.data.models.ReposModel
@@ -8,9 +9,9 @@ import retrofit2.Response
 
 interface Repository {
 
-    suspend fun getGitProfileInfo(user: String): Response<ProfileModel>
+    suspend fun getGitProfileInfoFromNetwork(user: String): Response<ProfileModel>
 
-    suspend fun getProfileRepos(user: String): Response<ReposModel>
+    suspend fun getProfileReposFromNetwork(user: String): Response<ReposModel>
 
     suspend fun getAllRepos(): Flow<List<ReposEntity>>
 
@@ -24,5 +25,13 @@ interface Repository {
 
     suspend fun isRepoExist(repoId: Int): Boolean
 
-    suspend fun getAllFavoriteItems(): Flow<List<ReposEntity>>
+    suspend fun getAllFavoriteRepos(): Flow<List<ReposEntity>>
+
+    suspend fun saveProfileInfo(profileEntity: ProfileEntity)
+
+    suspend fun getProfileInfo(login: String): Flow<ProfileEntity?>
+
+    suspend fun getAllProfiles(): Flow<List<ProfileEntity>>
+
+
 }
