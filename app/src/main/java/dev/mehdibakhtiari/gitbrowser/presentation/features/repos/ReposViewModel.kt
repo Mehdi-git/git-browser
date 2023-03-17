@@ -1,13 +1,11 @@
 package dev.mehdibakhtiari.gitbrowser.presentation.features.repos
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.mehdibakhtiari.gitbrowser.data.database.Repository
-import dev.mehdibakhtiari.gitbrowser.data.models.ReposItem
-import dev.mehdibakhtiari.gitbrowser.data.models.ReposModel
+import dev.mehdibakhtiari.gitbrowser.data.Repository
+import dev.mehdibakhtiari.gitbrowser.data.models.ReposEntity
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,30 +13,35 @@ import javax.inject.Inject
 @HiltViewModel
 class ReposViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    private val _reposLiveData = MutableLiveData<ReposModel>()
-    val reposLiveData: LiveData<ReposModel>
+    private val _reposLiveData = MutableLiveData<List<ReposEntity>>()
+    val reposLiveData: MutableLiveData<List<ReposEntity>>
         get() = _reposLiveData
 
     init {
-        getGitRepos(GIT_ID)
+        handleFavoriteItems()
+
     }
 
-    private fun getGitRepos(user: String) {
+    private fun toggleFavorite(repoId: Int, isFavorite: Boolean) {
         viewModelScope.launch {
-            val result = repository.getProfileRepos(user)
-            result.body()?.let {
+            repository.getRepoById(repoId)?.apply {
+                this.isFavorite = isFavorite
+            }?.let {
+                repository.updateRepos(it)
+            }
+        }
+    }
+
+    private fun handleFavoriteItems () {
+        viewModelScope.launch {
+            repository.getAllRepos().collect{
                 _reposLiveData.value = it
             }
         }
     }
 
-    fun onFavoriteClick(reposItem: ReposItem) {
-
+    fun onFavoriteClick(reposEntity: ReposEntity) {
+       toggleFavorite(reposEntity.id, reposEntity.isFavorite.not())
     }
-
-    companion object {
-        const val GIT_ID = "mehdi-git"
-    }
-
 
 }

@@ -6,5 +6,5 @@ data class ReposOwner(
     @SerializedName("id")val id: Int,
     @SerializedName("avatar_url") val avatarUrl: String?,
     @SerializedName("login")val login: String?,
-    @SerializedName("url")val url: String
+    @SerializedName("url")val url: String?
 )
