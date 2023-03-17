@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import dev.mehdibakhtiari.gitbrowser.data.models.ReposItem
+import dev.mehdibakhtiari.gitbrowser.data.models.ReposEntity
 import dev.mehdibakhtiari.gitbrowser.databinding.FragmentReposBinding
 import kotlinx.coroutines.launch
 
@@ -50,8 +50,8 @@ class ReposFragment : Fragment() {
         }
     }
 
-    private fun onFavoriteClick(reposItem: ReposItem) {
-        viewModel.onFavoriteClick(reposItem)
+    private fun onFavoriteClick(reposEntity: ReposEntity) {
+        viewModel.onFavoriteClick(reposEntity)
     }
 
     override fun onDestroyView() {
